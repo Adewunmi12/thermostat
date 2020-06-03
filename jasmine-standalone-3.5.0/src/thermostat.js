@@ -1,59 +1,29 @@
 class Thermostat {
   constructor(){
     this.degrees = 20;
-    this.mode = "on";
-    this.max_power_saving_mode_on = 25;
-    this.max_power_saving_mode_off = 32;
-    this.usageStatus = "medium-usage";
+    this.mode1 = "on";
+    this.maximum_power_saving_mode = 25;
   }
-
   degree(number){
-    this.degrees = number
-    return this.degrees;
+    return number
   }
-
   up(number){
-    this.degrees = this.degrees + number
-      if (this.mode == "on" && this.degrees > this.max_power_saving_mode_on){
-      throw "Power saving mode is on, max temp reached";
+    if(this.degrees + number > this.maximum_power_saving_mode) {
+      throw "power saving mode on";
     }
-      else if (this.mode == "off" && this.degrees > this.max_power_saving_mode_off){
-        throw "Power saving mode is off, max temp reached";
-      }
-      else {
+    else{
+    this.degrees = this.degrees + number
     return this.degrees;}
   }
-
   down(number){
-    if (this.degrees - number < 10){
-      throw "Temperature too low!";
+    if(this.degrees - number < 10) {
+      throw "temperature is too low";
     }
-    else {
+    else{
     this.degrees = this.degrees - number
     return this.degrees;}
   }
-
-  mode_status(){
-    return this.mode;
-  }
-
-  reset(){
-    this.degrees = 20
-    return this.degrees
-  }
-
-  usage(){
-    if (this.degrees < 18){
-      this.usageStatus = "low-usage"
-      return "low usage";
-    }
-    else if (this.degrees >= 18 && this.degrees < 25){
-      this.usageStatus = "medium-usage"
-      return "medium usage";
-    }
-    else {
-      this.usageStatus = "high-usage"
-      return "high usage";
-    }
+  mode(){
+    return this.mode1
   }
 };
