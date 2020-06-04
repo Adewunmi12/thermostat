@@ -21,6 +21,15 @@ it("minimum tempreature is 10 degrees", function(){
 });
 
 it("maximum temperature is 25 degrees if power saving mode is on", function(){
-  expect(thermostat.mode()).toEqual("on")
+  expect(function(){thermostat.up(5);}).toThrow("when power saving mode is on max tempreature is 25 degrees")
 });
+
+it("maximum temperature is 32 degrees if power saving mode is off", function(){
+  this.mode1 = "off"
+  expect(function(){thermostat.up(13);}).toThrow("when power saving mode is off max tempreature is 32 degrees")
+});
+
+// it("power saving mode is on", function(){
+//   expect(thermostat.mode()).toEqual(true)
+// });
 });
